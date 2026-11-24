@@ -1,0 +1,79 @@
+<div class="dashboard">
+
+  <app-page-heading title="Dashboard" subtitle="Here's what's happening with your finances.">
+    <a routerLink="/add-transaction" class="add-btn">+ Add Transaction</a>
+  </app-page-heading>
+
+  <div class="summary-grid">
+
+    <app-stat-card
+        title="Total Balance"
+        [value]="balance | number:'1.2-2'"
+    >
+        <span card-icon>₹</span>
+        <p>Your available balance</p>
+    </app-stat-card>
+
+    <app-stat-card
+        title="Total Income"
+        [value]="totalIncome | number:'1.2-2'"
+       >
+        <span card-icon>+</span>
+        <p class="positive">Money received</p>
+    </app-stat-card>
+    <app-stat-card
+        title="Total Expense"
+        [value]="totalExpenses | number:'1.2-2'"
+    >
+        <span card-icon>+</span>
+        <p class="positive">Money received</p>
+    </app-stat-card>
+    
+
+  </div>
+
+  <div class="transactions-section">
+
+    <div class="section-heading">
+      <div>
+        <h3>Recent Transactions</h3>
+        <p>Your latest financial activity</p>
+      </div>
+
+      <a routerLink="/transactions">View all →</a>
+    </div>
+
+    <div class="empty-state" *ngIf="transactions.length === 0">
+      <div class="empty-icon">₹</div>
+      <h3>No transactions yet</h3>
+      <p>Your transactions will appear here once you add them.</p>
+    </div>
+
+    <div class="transaction-list" *ngIf="transactions.length > 0">
+
+      <div class="transaction-row" *ngFor="let transaction of transactions.reverse().slice(0, 5)">
+
+        <div class="transaction-icon">
+          {{ transaction.type === 'income' ? '+' : '-' }}
+        </div>
+
+        <div class="transaction-details">
+          <h4>{{ transaction.title }}</h4>
+          <span>{{ transaction.category }} · {{ transaction.date | date:'mediumDate' }}</span> <!-- Date Pipe -->
+        </div>
+
+        <div
+          class="transaction-amount"
+          [class.income]="transaction.type === 'income'"
+          [class.expense]="transaction.type === 'expense'"
+        >
+          {{ transaction.type === 'income' ? '+' : '-' }}₹{{ transaction.amount | number:'1.2-2' }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

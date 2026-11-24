@@ -1,0 +1,13 @@
+<div class="summary-card">
+  <div class="card-top">
+    <span>{{ title }}</span>
+
+    <span class="card-icon">
+      <ng-content select="[card-icon]"></ng-content>
+    </span>
+  </div>
+
+  <h2>{{ value }}</h2>
+
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,65 @@
+<div class="transactions-page">
+
+    <app-page-heading title="Transactions" subtitle="Manage and track all your financial activities.">
+        <a routerLink="/add-transaction" class="add-btn">+ Add Transaction</a>
+    </app-page-heading>
+
+
+    <div class="form-group">
+        <div class="filters-section">
+            <input
+                type="text"
+                placeholder="Search transactions..."
+                [(ngModel)]="searchTerm"
+                name="search"
+            />
+            <select [(ngModel)]="selectedType" name="type">
+            <option value="all">All Transactions</option>
+            <option value="income">Income</option>
+            <option value="expense">Expenses</option>
+            </select>
+        </div>
+  </div>
+
+  <div class="transactions-section">
+
+    <div class="section-heading">
+      <div>
+        <h3>All Transactions</h3>
+        <p>Your financial activity</p>
+      </div>
+
+    </div>
+
+    <div class="empty-state" *ngIf="transactions.length === 0">
+      <div class="empty-icon">₹</div>
+      <h3>No transactions yet</h3>
+      <p>Your transactions will appear here once you add them.</p>
+    </div>
+
+    <div class="transaction-list" *ngIf="transactions.length > 0">
+
+      <div class="transaction-row" *ngFor="let transaction of transactions.reverse().slice(0, 5)">
+
+        <div class="transaction-icon">
+          {{ transaction.type === 'income' ? '+' : '-' }}
+        </div>
+
+        <div class="transaction-details">
+          <h4>{{ transaction.title }}</h4>
+          <span>{{ transaction.category }} · {{ transaction.date | date:'mediumDate' }}</span> <!-- Date Pipe -->
+        </div>
+
+        <div
+          class="transaction-amount"
+          [class.income]="transaction.type === 'income'"
+          [class.expense]="transaction.type === 'expense'"
+        >
+          {{ transaction.type === 'income' ? '+' : '-' }}₹{{ transaction.amount | number:'1.2-2' }}
+        </div>
+
+      </div>
+
+    </div>
+
+</div>

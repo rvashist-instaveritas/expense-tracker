@@ -1,0 +1,154 @@
+<div class="form-page">
+
+  <div class="page-heading">
+    <div>
+      <h1>Add Transaction</h1>
+      <p>Record your income or expenses.</p>
+    </div>
+
+    <button class="back-btn" routerLink="/dashboard">
+      < Back to Dashboard
+    </button>
+  </div>
+
+  <div class="form-card">
+
+    <div class="form-card-heading">
+      <h2>Transaction Details</h2>
+      <p>Enter the details of your transaction below.</p>
+    </div>
+
+    <form #transactionForm="ngForm" (ngSubmit)="addTransaction()"> <!--template reference variable and event binding-->
+
+     
+      <div class="form-group">
+        <label>Transaction Type</label>
+
+        <div class="type-selector">
+
+          <label
+            class="type-option"
+            [class.selected]="transaction.type === 'expense'" 
+          > <!-- class binding -->
+            <input
+              type="radio"
+              name="type"
+              value="expense"
+              [(ngModel)]="transaction.type"
+            /> <!-- two way binding -->
+            <span class="type-symbol expense-symbol"> - </span>
+            <span>Expense</span>
+          </label>
+
+          <label
+            class="type-option"
+            [class.selected]="transaction.type === 'income'"
+          >
+            <input
+              type="radio"
+              name="type"
+              value="income"
+              [(ngModel)]="transaction.type"
+            />
+            <span class="type-symbol income-symbol"> + </span>
+            <span>Income</span>
+          </label>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Transaction Title</label>
+
+        <input
+          id="title"
+          type="text"
+          name="title"
+          [(ngModel)]="transaction.title"
+          placeholder="e.g. Monthly Salary, Grocery Shopping"
+          required
+          #title="ngModel"
+        />
+
+        <small class="error" *ngIf="title.invalid && title.touched"> <!--Structural directive *ngIf-->
+          Please enter a transaction title.
+        </small>
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label for="amount">Amount (₹)</label>
+
+          <input
+            id="amount"
+            type="number"
+            name="amount"
+            [(ngModel)]="transaction.amount"
+            placeholder="0.00"
+            min="0.01"
+            required
+            #amount="ngModel"
+          />
+
+          <small class="error" *ngIf="amount.invalid && amount.touched"> <!--Structural directive *ngIf-->
+            Enter a valid amount greater than zero.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+
+          <select
+            id="category"
+            name="category"
+            [(ngModel)]="transaction.category"
+            required
+          >
+            <option value="" disabled>Select category</option>
+
+            <option *ngFor="let category of categories" [value]="category"> <!-- structural directive *ngFor -->
+              {{ category }}
+            </option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="date">Transaction Date</label>
+
+        <input
+          id="date"
+          type="date"
+          name="date"
+          [(ngModel)]="transaction.date"
+          required
+        />
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="cancel-btn"
+          routerLink="/dashboard"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="transactionForm.invalid || transaction.amount <= 0" 
+        > <!-- Property Binding -->
+          Save Transaction
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

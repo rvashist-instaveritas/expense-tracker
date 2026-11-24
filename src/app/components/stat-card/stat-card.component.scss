@@ -1,0 +1,29 @@
+.summary-card {
+  background: white;
+  border: 1px solid #edf0f5;
+  border-radius: 13px;
+  padding: 23px;
+  box-shadow: 0 3px 12px rgba(25, 42, 70, 0.025);
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #7e899b;
+    font-size: 12px;
+  }
+
+  h2 {
+    margin: 22px 0 7px;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #172033;
+  }
+
+  p {
+    margin: 0;
+    color: #9aa3b2;
+    font-size: 11px;
+  }
+}

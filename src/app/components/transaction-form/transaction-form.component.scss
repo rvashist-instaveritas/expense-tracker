@@ -1,0 +1,165 @@
+.form-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+
+  h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+  }
+
+  p {
+    margin: 7px 0 0;
+    color: #8b95a7;
+    font-size: 13px;
+  }
+}
+
+.back-btn,
+.cancel-btn {
+  border: 1px solid #e5e9f0;
+  background: white;
+  color: #64748b;
+  border-radius: 8px;
+  padding: 11px 15px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.form-card {
+  background: white;
+  border: 1px solid #edf0f5;
+  border-radius: 13px;
+  padding: 30px;
+}
+
+.form-card-heading {
+  padding-bottom: 22px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #edf0f5;
+
+  h2 {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  p {
+    margin: 7px 0 0;
+    color: #8b95a7;
+    font-size: 12px;
+  }
+}
+
+.type-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.type-option {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid #e2e7ef;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #64748b;
+  transition: 0.2s;
+
+  input {
+    accent-color: #2878f0;
+  }
+
+  &.selected {
+    border-color: #2878f0;
+    background: #f3f7ff;
+    color: #2878f0;
+  }
+}
+
+.type-symbol {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 17px;
+}
+
+.expense-symbol {
+  color: #e45c67;
+  background: #fff0f0;
+}
+
+.income-symbol {
+  color: #16a36a;
+  background: #e8f8f0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.error {
+  color: #e45c67;
+  font-size: 11px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  margin-top: 8px;
+  border-top: 1px solid #edf0f5;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  background: #2878f0;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: #1767dc;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-card {
+    padding: 20px 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
